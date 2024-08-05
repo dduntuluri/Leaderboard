@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leaderboard</title>
+</head>
+<body>
+<style>
+    /* Basic styles */
+    body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .leaderboardcircle {
+        width: 80%;
+        margin: 50px auto;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 20px;
+    }
+
+    /* Header styles */
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* Table styles */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+
+    th:first-child, td:first-child {
+        width: 50px;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    /* Points and star styles */
+    .points {
+        font-weight: bold;
+        margin-left: 5px;
+    }
+
+    .gold-star {
+        color: gold;
+    }
+</style>
+
+<div class="leaderboardcircle">
+    <h1>Leaderboard</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Points</th>
+                <th>Week 1</th>
+                <th>Week 2</th>
+                <th>Week 3</th>
+                <th>Week 4</th>
+            </tr>
+        </thead>
+        <tbody id="leaderboardcircle-body">
+            <!-- Data will be injected here by JavaScript -->
+            <tr>
+                <td>1</td>
+                <td>Akash Manikandan</td>
+                <td><span class="gold-star">★</span><span class="points">700</span> Points</td>
+                <td>250</td>
+                <td>100</td>
+                <td>200</td>
+                <td>150</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Ashik Mohammad</td>
+                <td><span class="gold-star">★</span><span class="points">650</span> Points</td>
+                <td>250</td>
+                <td>100</td>
+                <td>150</td>
+                <td>150</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Anu L</td>
+                <td><span class="gold-star">★</span><span class="points">600</span> Points</td>
+                <td>200</td>
+                <td>100</td>
+                <td>150</td>
+                <td>150</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Ashik Mohammad</td>
+                <td><span class="gold-star">★</span><span class="points">581</span> Points</td>
+                <td>181</td>
+                <td>120</td>
+                <td>130</td>
+                <td>150</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Anu L</td>
+                <td><span class="gold-star">★</span><span class="points">545</span> Points</td>
+                <td>195</td>
+                <td>120</td>
+                <td>110</td>
+                <td>120</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Ashik Mohammad</td>
+                <td><span class="gold-star">★</span><span class="points">515</span> Points</td>
+                <td>155</td>
+                <td>125</td>
+                <td>110</td>
+                <td>125</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Akash Manikandan</td>
+                <td><span class="gold-star">★</span><span class="points">500</span> Points</td>
+                <td>150</td>
+                <td>125</td>
+                <td>110</td>
+                <td>115</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Ashik Mohammad</td>
+                <td><span class="gold-star">★</span><span class="points">480</span> Points</td>
+                <td>140</td>
+                <td>125</td>
+                <td>110</td>
+                <td>105</td>
+            </tr>
+            <!-- Add more rows as needed -->
+        </tbody>
+    </table>
+</div>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    async function fetchLeaderboard() {
+        const response = await fetch('/api/leaderboard');
+        const data = await response.json();
+        const tbody = document.getElementById('leaderboardcircle-body');
+        tbody.innerHTML = ''; // Clear existing rows
+
+        data.forEach(item => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.rank}</td>
+                <td>${item.name}</td>
+                <td><span class="gold-star">★</span><span class="points">${item.points}</span> Points</td>
+                <td>${item.week1}</td>
+                <td>${item.week2}</td>
+                <td>${item.week3}</td>
+                <td>${item.week4}</td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+
+    fetchLeaderboard();
+</script>
+</body>
+</html>

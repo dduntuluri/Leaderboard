@@ -1,0 +1,50 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #fff; /* White background */
+}
+
+.content-circle {
+  display: flex;
+  align-items: center;
+  background-color: #AFDBF5; /* Blue background */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image-container {
+  flex-shrink: 0;
+  
+}
+
+.circle-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.text-container {
+  margin-left: 40px;
+  text-align: right;
+}
+
+
+.text-container p {
+  margin: 5px 0;
+  font-size: 18px;
+}
+
+.points-circle {
+  font-weight: bold;
+  font-size: 20px;
+  color: #fff; /* White text to contrast with blue background */
+}
